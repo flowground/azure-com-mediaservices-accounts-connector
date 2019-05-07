@@ -1,0 +1,132 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "accountName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "The core properties of ARM resources.",
+                            "properties": {
+                                "id": {
+                                    "description": "Fully qualified resource ID for the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "The name of the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "The type of the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "x-ms-azure-resource": true,
+                            "type": "object"
+                        }
+                    ],
+                    "description": "The resource model definition for a ARM tracked resource.",
+                    "properties": {
+                        "location": {
+                            "description": "The Azure Region of the resource.",
+                            "type": "string",
+                            "x-ms-mutability": [
+                                "read",
+                                "create"
+                            ]
+                        },
+                        "tags": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Resource tags.",
+                            "type": "object",
+                            "x-ms-mutability": [
+                                "read",
+                                "create",
+                                "update"
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "description": "A Media Services account.",
+            "properties": {
+                "properties": {
+                    "description": "The resource properties.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "mediaServiceId": {
+                            "description": "The Media Services account ID.",
+                            "format": "uuid",
+                            "readOnly": true,
+                            "type": "string",
+                            "nullable": false
+                        },
+                        "storageAccounts": {
+                            "description": "The storage accounts for this resource.",
+                            "items": {
+                                "description": "The storage account details.",
+                                "properties": {
+                                    "id": {
+                                        "description": "The ID of the storage account resource. Media Services relies on tables and queues as well as blobs, so the primary storage account must be a Standard Storage account (either Microsoft.ClassicStorage or Microsoft.Storage). Blob only storage accounts can be added as secondary storage accounts.",
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "description": "The type of the storage account.",
+                                        "enum": [
+                                            "Primary",
+                                            "Secondary"
+                                        ],
+                                        "type": "string",
+                                        "x-ms-enum": {
+                                            "modelAsString": true,
+                                            "name": "StorageAccountType",
+                                            "values": [
+                                                {
+                                                    "description": "The primary storage account for the Media Services account.",
+                                                    "value": "Primary"
+                                                },
+                                                {
+                                                    "description": "A secondary storage account for the Media Services account.",
+                                                    "value": "Secondary"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                "required": [
+                                    "type"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "locationName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "The input to the check name availability request.",
+            "properties": {
+                "name": {
+                    "description": "The account name.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The account type. For a Media Services account, this should be 'MediaServices'.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
